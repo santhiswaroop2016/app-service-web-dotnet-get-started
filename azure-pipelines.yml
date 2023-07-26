@@ -21,11 +21,13 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Build web project'
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
   inputs:
-    command: 'build'
-    projects: $(SolutionPath)
+    packageType: 'sdk'
+    version: '6.x'
+    includePreviewVersions: true
+    performMultiLevelLookup: true
 
 - task: VSBuild@1
   inputs:
